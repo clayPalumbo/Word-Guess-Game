@@ -4,8 +4,8 @@
 //Words
 var carNames =          
     [
-        "Ford",
-        "Honda",
+        "FORD",
+        "HONDA",
         "JEEP",
         "BENTLEY",
         "ACURA",
@@ -75,7 +75,7 @@ function resetDisplay() {
 };
 
 
-// 
+// links game
 function updateHangmanGame() {
     document.getElementById("hangmangame");
 };
@@ -104,7 +104,7 @@ function evaluateGuess(letter) {
         }
     }
 };
-// Checks for a win by seeing if there are any remaining underscores in the userGuess we are building.
+// if userguess is undefined then you win
 function checkWin() {
     if(userGuess.indexOf("_") === -1) {
         document.getElementById("youWin").style.cssText = "display: block";
@@ -115,7 +115,7 @@ function checkWin() {
 };
 
 
-// Checks for a loss
+// loss?
 function checkLoss()
 {
     if(remainingGuesses <= 0) {
@@ -139,7 +139,7 @@ function makeGuess(letter) {
 
 
 // Event listener
-document.onkeydown = function(event) {
+document.onkeyup = function(event) {
     // If we finished a game, dump one keystroke and reset.
     if(hasCompleted) {
         resetGame();
