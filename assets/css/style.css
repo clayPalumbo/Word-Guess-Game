@@ -1,0 +1,12 @@
+body {
+    background-color: white;
+    font-family: 'Lato', sans-serif;
+    color: black;
+}
+.container { 
+    text-align: left;
+    
+}
+#currentWord {
+    letter-spacing: 10px;
+}
