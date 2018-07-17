@@ -92,18 +92,15 @@ function evaluateGuess(letter) {
         }
     }
 
-    // if there are no indicies, remove a guess and update the hangman image
     if (positions.length <= 0) {
         remainingGuesses--;
         updateHangmanGame();
     } else {
-        // Loop through all the indicies and replace the '_' with a letter.
         for (var i = 0; i < positions.length; i++) {
             userGuess[positions[i]] = letter;
         }
     }
 };
-// if userguess is undefined then you win
 function checkWin() {
     if (userGuess.indexOf("_") === -1) {
         document.getElementById("youWin").style.cssText = "display: block";
