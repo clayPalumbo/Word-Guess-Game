@@ -2,7 +2,7 @@
 
 'use strict';
 //Words
-var carNames =          
+var carNames =
     [
         "FORD",
         "HONDA",
@@ -20,7 +20,7 @@ var carNames =
     ];
 
 // Number of tries
-const maxChances = 11;            
+const maxChances = 11;
 
 var userGuess = [];          // Keeps track of letters Guessed
 var carWordIndex;           // Index of the array
@@ -45,10 +45,10 @@ function resetGame() {
     // Build the word and clear it out
     for (var i = 0; i < carNames[carWordIndex].length; i++) {
         userGuess.push("_");
-    }   
+    }
 
     // Hides game over and win text
-    document.getElementById("pressKeyRestart").style.cssText= "display: none";
+    document.getElementById("pressKeyRestart").style.cssText = "display: none";
     document.getElementById("youWin").style.cssText = "display: none";
     document.getElementById("youLose").style.cssText = "display: none";
 
@@ -62,7 +62,6 @@ function resetDisplay() {
     document.getElementById("allWins").innerText = wins;
 
     // Display how much of the word we've already guessed on screen.
-    // Printing the array would add commas (,) - so we concatenate a string from each value in the array.
     var userGuessText = "";
     for (var i = 0; i < userGuess.length; i++) {
         userGuessText += userGuess[i];
@@ -88,7 +87,7 @@ function evaluateGuess(letter) {
 
     // Loop through word finding all instances of guessed letter, store the indicies in an array.
     for (var i = 0; i < carNames[carWordIndex].length; i++) {
-        if(carNames[carWordIndex][i] === letter) {
+        if (carNames[carWordIndex][i] === letter) {
             positions.push(i);
         }
     }
@@ -99,54 +98,42 @@ function evaluateGuess(letter) {
         updateHangmanGame();
     } else {
         // Loop through all the indicies and replace the '_' with a letter.
-        for(var i = 0; i < positions.length; i++) {
+        for (var i = 0; i < positions.length; i++) {
             userGuess[positions[i]] = letter;
         }
     }
 };
 // if userguess is undefined then you win
 function checkWin() {
-    if(userGuess.indexOf("_") === -1) {
+    if (userGuess.indexOf("_") === -1) {
         document.getElementById("youWin").style.cssText = "display: block";
-        document.getElementById("pressKeyRestart").style.cssText= "display: block";
+        document.getElementById("pressKeyRestart").style.cssText = "display: block";
         wins++;
         hasCompleted = true;
     }
 };
-
-
 // loss?
-function checkLoss()
-{
-    if(remainingGuesses <= 0) {
+function checkLoss() {
+    if (remainingGuesses <= 0) {
         document.getElementById("youLose").style.cssText = "display: block";
         document.getElementById("pressKeyRestart").style.cssText = "display:block";
         hasCompleted = true;
     }
 }
-
-// Makes a guess
 function makeGuess(letter) {
     if (remainingGuesses > 0) {
-        // Make sure we didn't use this letter yet
         if (lettersGuessed.indexOf(letter) === -1) {
             lettersGuessed.push(letter);
             evaluateGuess(letter);
         }
     }
-    
 };
-
-
-// Event listener
-document.onkeyup = function(event) {
-    // If we finished a game, dump one keystroke and reset.
-    if(hasCompleted) {
+document.onkeyup = function (event) {
+    if (hasCompleted) {
         resetGame();
         hasCompleted = false;
     } else {
-        // Check to make sure a-z was pressed.
-        if(event.keyCode >= 65 && event.keyCode <= 90) {
+        if (event.keyCode >= 65 && event.keyCode <= 90) {
             makeGuess(event.key.toUpperCase());
             resetDisplay();
             checkWin();
