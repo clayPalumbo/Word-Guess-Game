@@ -1,6 +1,5 @@
-//I can't believe it works
+//IT WORKS!!!!
 
-'use strict';
 //Words
 var carNames =
     [
@@ -19,17 +18,14 @@ var carNames =
         "LEXUS",
     ];
 
-// Number of tries
-const maxChances = 11;
 
-var userGuess = [];          // Keeps track of letters Guessed
-var carWordIndex;           // Index of the array
+var userGuess = [];             // Keeps track of letters Guessed
+var carWordIndex;               // Index of the array
 var lettersGuessed = [];        // This will be the word we actually build to match the current word
 var remainingGuesses = 0;       // How many tries the player has left
-var hasCompleted = false;        // Flag for 'press any key to try again'    
-
+var hasCompleted = false;       // Brings up 'press any key to try again'    
 var wins = 0;                   // Number of wins
-
+const maxChances = 11;
 
 // Reset our game-level variables
 function resetGame() {
@@ -79,25 +75,22 @@ function updateHangmanGame() {
     document.getElementById("hangmangame");
 };
 
-// This function takes a letter and finds all instances of 
-// appearance in the string and replaces them in the guess word.
-function evaluateGuess(letter) {
-    // Array to store positions of letters in string
-    var positions = [];
 
-    // Loop through word finding all instances of guessed letter, store the indicies in an array.
+function evaluateGuess(letter) {
+    var place = [];
+
     for (var i = 0; i < carNames[carWordIndex].length; i++) {
         if (carNames[carWordIndex][i] === letter) {
-            positions.push(i);
+            place.push(i);
         }
     }
 
-    if (positions.length <= 0) {
+    if (place.length <= 0) {
         remainingGuesses--;
         updateHangmanGame();
     } else {
-        for (var i = 0; i < positions.length; i++) {
-            userGuess[positions[i]] = letter;
+        for (var i = 0; i < place.length; i++) {
+            userGuess[place[i]] = letter;
         }
     }
 };
